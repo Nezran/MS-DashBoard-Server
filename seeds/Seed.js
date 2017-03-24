@@ -20,12 +20,12 @@ class Seed {
     seedDb() {
 
         var promises = [];
-        var userOne = new User({ username: "xavier",firstname: "Xavier", lastname: "CARREL", email: "x.c@cpnv.ch", role: "Project manager" });
+        var userOne = new User({ username: "xavier",firstname: "Xavier", lastname: "CARREL", email: "x.c@cpnv.ch", role: "Project Manager" });
         userOne.setPassword("1234");
         promises.push(userOne.save());
 
 
-        var userTwo = new User({ username: "jerome", firstname: "Jerome", lastname: "CHEVILLAT", email: "j.c@cpnv.ch", role: "Project manager" });
+        var userTwo = new User({ username: "jerome", firstname: "Jerome", lastname: "CHEVILLAT", email: "j.c@cpnv.ch", role: "Project Manager" });
         userTwo.setPassword("1234");
         promises.push(userTwo.save());
 
