@@ -110,6 +110,19 @@ class User {
         });
     }
 
+    update(data){
+        var self = this;
+        return new Promise(function (resolve, reject) {
+            db.users.update({_id: self.id}, new User(data), function (err, u) {
+                if(err) reject(err);
+                db.users.findOne({ _id: self.id }, function (err, user) {
+                    if(err) reject(err);
+                    resolve(new User(user));
+                });
+            });
+        });
+    }
+
     static remove(id) {
         var remove = {};
         if (id){

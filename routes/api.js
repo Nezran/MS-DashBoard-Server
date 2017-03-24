@@ -212,6 +212,39 @@ app.post("/user", (req, res) => {
     });
 });
 
+app.delete("/user/:id", (req, res) => {
+    let id = req.params.id;
+    res.json(id);
+    User.remove(id).then((ok) => {
+        res.json("ok");
+    }).catch((err) => {
+        console.error("rip : ", err);
+        res.status(400).json("Remove error");
+    });
+});
+
+app.put("/user", (req, res) => {
+    let id = req.body.id;
+    User.findById(id).then((user) => {
+        var newUser = {
+            username: req.body.username,
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            role: req.body.role,
+            email: req.body.email,
+            password: req.body.password,
+        };
+
+        user.update(newUser).then((nUser) => {
+            res.json(nUser);
+        }).catch(err => {
+            console.log(err);
+            res.status(400).json("User not found");
+        });
+    });
+});
+
+
 app.get("/users", (req, res) => {
     User.all().then((users) => {
         res.json(users);
